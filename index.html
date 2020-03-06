@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>RSA in Javascript</title>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({
+				tex2jax: {
+					inlineMath: [ ['$', '$'], ["\\(","\\)"] ],
+					processEscapes: true
+				}
+			});
+		</script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+	<div class="outerWrapper">
+	<img src="favicon.ico" height="50" width="50" alt="RSA in Javascript" style="border-radius: 20%">
+	<h1>RSA Calculator Tool</h1>
+	<form name="fieldsForm" id="fieldsForm">
+		<table class="mainTable">
+			<tr>
+				<td class="middleCol">
+					<label>enter two primes:</label><br>
+					<input class="textboxes" id="p" type="text" onchange="validateForm()" required><br>
+					<input class="textboxes" id="q" type="text" onchange="validateForm()" required><br>
+				</td>
+				<td class="middleCol">
+					$p$<br>$q$
+				</td>
+				<td class="explanationCol">
+					large random primes<br>
+					$p \neq q$
+				</td>
+			</tr>
+			<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+			<tr>
+				<td class="middleCol">
+					<div class="calculated" id="n">&nbsp;</div>
+					$\downarrow$
+				</td>
+				<td class="middleCol">
+					<input class="buttons" id="btn_calculateN" type="button" onclick="calculateN()" value="calculate n"><br><br>
+				</td>
+				<td class="explanationCol">
+					RSA modulus<br>
+					$n = p \times q$<br>
+					<div class="keyBits" id="keyBits">&nbsp;</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="middleCol">
+					<div class="calculated" id="phi">&nbsp;</div>
+					$\downarrow$
+				</td>
+				<td class="middleCol">
+					<input class="buttons" id="btn_calculatePhi" type="button" onclick="calculatePhi()" value="calculate &phi;"><br><br>
+				</td>
+				<td class="explanationCol">
+					totient<br>
+					$\phi(n) = (p-1)(q-1)$<br><br>
+				</td>
+			</tr>
+			<tr>
+				<td class="middleCol">
+					<div class="calculated" id="e">&nbsp;</div>
+					$\downarrow$
+				</td>
+				<td class="middleCol">
+					<input class="buttons" id="btn_calculateE" type="button" onClick="getE()" value="choose e"><br><br>
+				</td>
+				<td class="explanationCol">
+					$1 &lt; e &lt; \phi(n)$<br>
+					$e$ coprime with $\phi(n)$<br><br>
+				</td>
+			</tr>
+			<tr>
+				<td class="middleCol">
+					<div class="calculated" id="d">&nbsp;</div>
+					$\downarrow$
+				</td>
+				<td class="middleCol">
+					<input class="buttons" id="btn_calculateD" type="button" onclick="calculateD()" value="calculate d"><br><br>
+				</td>
+				<td class="explanationCol">
+					$1 &lt; d &lt; \phi$<br>
+					$ed \equiv 1$ $mod$ $\phi$<br><br>
+				</td>
+			</tr>
+			<tr>
+				<td class="middleCol">
+					<label for="m">enter message number:</label><br>
+					<div class="encErrBox" id="encErrBox"></div>
+					<input class="textboxes" id="m" type="text" onchange="validateForm()" required><br>
+					<input class="buttons" id="btnEncrypt" type="button" onClick="doEncrypt()" value="encrypt">
+				</td>
+				<td class="middleCol">
+					<div class="resultsBox" id="encryptedText">&nbsp;</div>
+					<div class="timerTextBox" id="encTimerTextBox">$\Delta t = $</div>
+					<img src="ajax-loader2.gif" id="loadingEnc" alt="computing..." style="visibility: hidden" width="10" height="10">
+					<div class="timeDisplay" id="encTime">&nbsp;</div>
+				</td>
+				<td class="explanationCol">
+					$c \equiv m^e \ (mod \ n)$
+				</td>
+			</tr>
+			<tr>
+				<td class="middleCol">
+					<label for="c">enter ciphertext number:</label><br>
+					<input class="textboxes" id="c" type="number" onchange="validateForm()" required><br>
+					<input class="buttons" id="btnDecrypt" type="button" onClick="doDecrypt()" value="decrypt">
+				</td>
+				<td class="middleCol">
+					<div class="resultsBox" id="decryptedText">&nbsp;</div>
+					<div class="timerTextBox" id="decTimerTextBox">$\Delta t = $</div>
+					<img src="ajax-loader2.gif" id="loadingDec" alt="computing..." style="visibility: hidden" width="10" height="10">
+					<div class="timeDisplay" id="decTime">&nbsp;</div>
+				</td>
+				<td class="explanationCol">
+					$m \equiv c^d \ (mod \ n)$
+				</td>
+			</tr>
+		</table>
+	</form>
+	<script src="rsa.js"></script>
+	<input class="buttons" id="btnReset" type="button" onClick="resetFields()" value="reset"><br><br>
+	<p class="notes">Notes: $p$ and $q$ must not be equal. The message number must be strictly less than $(n-1)$.<br>Using large primes will result in large values for the exponent $d$. Values of $d > 10^6$ are going to take forever to decrypt, but if you wait long enough it should eventually complete.<br>
+	<strong>Using large primes won't work on all browsers because of the larger-than-usual memory allocation requirement.</strong> Chrome works best; Chrome doesn't care how much memory you ask for.<br>
+	Here are some primes you can try for testing.</p>
+	<table class="primesTable" id="primesTable">
+		<script>generateTable();</script>
+	</table>
+	</div>
+	<div class="footer">
+		Made by Logan Garrett for Northern Arizona University in 2020
+	</div>
+	</body>
+</html>

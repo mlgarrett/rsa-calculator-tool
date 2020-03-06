@@ -1,0 +1,23 @@
+body { font-family: Arial, Helvetica, sans-serif; }
+table { table-layout: fixed; border-spacing: 5px 5px; width: 100%; border: none; margin-top: 25px; }
+label { font-size: 15px; }
+p { text-align: left;  font-size: 12px; color: gray; }
+h1 { text-decoration: underline; margin-top: 5px; }
+
+.outerWrapper { margin: auto; padding: 10px; border: 0px solid black; min-width: 650px; max-width: 650px; text-align: center; }
+.textboxes { margin-top: 3px; margin-bottom: 5px; text-align: center; font-size: 17px; width: 75%; border: 1px solid black; }
+.calculated { margin: auto; margin-bottom: 3px; border-style: dashed; border-width: 1px; text-align: center;  font-size: 17px; width: 75%; }
+.middleCol { text-align: center; font-size: 17px; }
+.explanationCol { height: 60px; text-align: center; font-size: 15px; }
+.encErrBox { font-size: 12px; text-align: center; color: red; }
+.resultsBox { font-size: 40px; font-weight: bolder; margin: auto; width: 75%; border-style: dashed; border-width: 1px; }
+.timerTextBox { font-size: 12px; text-align: center; display: inline; }
+.timeDisplay { font-size: 12px; text-align: center; display: inline; }
+
+.buttons { font-size: 17px; width: 75%; }
+.buttonDLoading { font-size: 20px; width: 75%; background: url(ajax-loader2.gif) no-repeat; background-position: center center; }
+#btnReset { min-width: 7%; width: 15%; }
+
+.primes { border: 1px solid black; }
+.primesTable { font-size: 12px; text-align: center; border: 1px solid black; }
+.footer { text-align: center; font-size: 0.6em; color: gray; }
