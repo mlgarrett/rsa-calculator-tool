@@ -7,6 +7,6 @@ It works best on the Chrome browser. It will work on other browsers, but possibl
 
 Numeric messages only at this time. I have not implemented the ability to encrypt and decrypt non-numeric ciphertext, as this functionality is neither necessary nor appropriate for demonstration of the RSA algorithm.
 
-Some limited error checking does take place, but I make no guarantees that any of this is airtight. Also, if you try to use primes greater than the ones I make available for testing (d > ~10^6), I can't promise that it will work, but I can promise that it will take a lot of time to do it, one way or the other. The longest I've waited is about 20 minutes, and it was ultimately successful.
+Some limited error checking does take place, but I make no guarantees that any of this is airtight. Also, if you try to use primes greater than the ones I make available for testing (d > ~10^6), I can't promise that it will work, but I can promise that it will take a lot of time to do it, one way or the other. For what it's worth, the longest I've waited is about 20 minutes, and the process was ultimately successful.
 
 I hope this can serve as a useful tool to anyone studying or wanting a clear demonstration of this popular cryptographic scheme.
